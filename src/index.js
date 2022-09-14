@@ -439,6 +439,13 @@ const DateRangePicker = ({
                     >
                       This Month
                     </Button>
+                    <Button
+                      buttonStyle={buttonStyle}
+                      buttonTextStyle={buttonTextStyle}
+                      onPress={_onClose}
+                    >
+                      Close
+                    </Button>
                   </>
                 )}
               </View>
