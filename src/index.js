@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useCallback, useEffect, useState } from "react";
-import {Image, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import Button from "./components/Button";
 import Day from "./components/Day";
 import Header from "./components/Header";
@@ -184,14 +184,14 @@ const DateRangePicker = ({
     });
   };
 
-  const lastWeek = () => {
+  const last7Days = () => {
     setSelecting(false);
     onChange({
       date: null,
-      startDate: _moment().lastWeek("lastWeek"),
-      endDate: _moment().lastWeek("lastWeek"),
+      startDate: _moment(),
+      endDate: _moment().endOf("last7Days"),
       displayedDate: _moment(),
-      label: "thisWeek",
+      label: "lastWeek",
     });
   };
 
@@ -201,6 +201,17 @@ const DateRangePicker = ({
       date: null,
       startDate: _moment().startOf("month"),
       endDate: _moment().endOf("month"),
+      displayedDate: _moment(),
+      label: "thisMonth",
+    });
+  };
+
+  const thisQuarter = () => {
+    setSelecting(false);
+    onChange({
+      date: null,
+      startDate: _moment().startOf("thisQuarter"),
+      endDate: _moment().endOf("thisQuarter"),
       displayedDate: _moment(),
       label: "thisMonth",
     });
@@ -372,11 +383,7 @@ const DateRangePicker = ({
             <View style={styles.header}>
               <TouchableOpacity onPress={previousMonth}>
                 {monthPrevButton || (
-                  <Image
-                    resizeMode="contain"
-                    style={mergedStyles.monthButtons}
-                    source={chevronL}
-                  ></Image>
+                  <Image source={chevronL} style={mergedStyles.monthButtons} />
                 )}
               </TouchableOpacity>
               <Text style={mergedStyles.headerText}>
@@ -414,7 +421,7 @@ const DateRangePicker = ({
                   buttonTextStyle={buttonTextStyle}
                   onPress={yesterday}
                 >
-                  yesterday
+                  Yesterday
                 </Button>
                 {range && (
                   <>
@@ -428,9 +435,9 @@ const DateRangePicker = ({
                     <Button
                       buttonStyle={buttonStyle}
                       buttonTextStyle={buttonTextStyle}
-                      onPress={lastWeek}
+                      onPress={last7Days}
                     >
-                      Last Week
+                      Last 7 days
                     </Button>
                     <Button
                       buttonStyle={buttonStyle}
@@ -438,6 +445,13 @@ const DateRangePicker = ({
                       onPress={thisMonth}
                     >
                       This Month
+                    </Button>
+                    <Button
+                      buttonStyle={buttonStyle}
+                      buttonTextStyle={buttonTextStyle}
+                      onPress={thisQuarter}
+                    >
+                      This Quarter
                     </Button>
                   </>
                 )}
@@ -528,7 +542,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   monthButtons: {
-    fontSize: 16,
+    resizeMode: "contain",
     color: "black",
     width: 32,
     height: 32,
@@ -545,9 +559,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 10,
+    marginTop: 8,
   },
 });
