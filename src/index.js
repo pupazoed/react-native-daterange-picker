@@ -133,7 +133,7 @@ const DateRangePicker = ({
       onChange({
         date: null,
         startDate: _moment(),
-        endDate: null,
+        endDate: _moment(),
         selecting: true,
         displayedDate: _moment(),
         label: "today",
@@ -156,7 +156,7 @@ const DateRangePicker = ({
       onChange({
         date: null,
         startDate: _moment().lastDay("yesterday"),
-        endDate: null,
+        endDate: _moment().lastDay("yesterday"),
         selecting: true,
         displayedDate: _moment().lastDay("yesterday"),
         label: "yesterday",
@@ -566,7 +566,6 @@ const styles = StyleSheet.create({
   },
   monthButtons: {
     resizeMode: "contain",
-    color: "black",
     width: 32,
     height: 32,
   },
