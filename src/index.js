@@ -236,10 +236,16 @@ const DateRangePicker = ({
         if (selecting) {
           if (_date.isBefore(startDate, "day")) {
             setSelecting(true);
-            onChange({ startDate: _date });
+            onChange({
+              startDate: _date,
+              label: "custom",
+            });
           } else {
             setSelecting(!selecting);
-            onChange({ endDate: _date });
+            onChange({
+              endDate: _date,
+              label: "custom",
+            });
           }
         } else {
           setSelecting(!selecting);
@@ -247,6 +253,7 @@ const DateRangePicker = ({
             date: null,
             endDate: null,
             startDate: _date,
+            label: "custom",
           });
         }
       } else {
@@ -254,6 +261,7 @@ const DateRangePicker = ({
           date: _date,
           startDate: null,
           endDate: null,
+          label: "custom",
         });
       }
     },
