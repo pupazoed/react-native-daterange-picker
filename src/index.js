@@ -191,7 +191,7 @@ const DateRangePicker = ({
       startDate: _moment().startOf("last7Days"),
       endDate: _moment().endOf("last7Days"),
       displayedDate: _moment(),
-      label: "lastWeek",
+      label: "last7Days",
     });
   };
 
@@ -213,7 +213,7 @@ const DateRangePicker = ({
       startDate: _moment().startOf("thisQuarter"),
       endDate: _moment().endOf("thisQuarter"),
       displayedDate: _moment(),
-      label: "thisMonth",
+      label: "thisQuarter",
     });
   };
 
