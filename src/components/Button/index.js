@@ -24,14 +24,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "#bdbdbd",
+    borderColor: "#D9E0E8",
     justifyContent: "center",
     alignItems: "center",
-    padding: 8,
+    padding: 6,
     marginLeft: 8,
-    marginBottom: 8,
   },
-  buttonText: {},
+  buttonText: {
+    fontSize: 12,
+  },
 });
 
 export default Button;

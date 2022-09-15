@@ -217,6 +217,17 @@ const DateRangePicker = ({
     });
   };
 
+  const thisYear = () => {
+    setSelecting(false);
+    onChange({
+      date: null,
+      startDate: _moment().startOf("thisYear"),
+      endDate: _moment().endOf("thisYear"),
+      displayedDate: _moment(),
+      label: "thisYear",
+    });
+  };
+
   const select = useCallback(
     (day) => {
       let _date = _moment(displayedDate);
@@ -263,7 +274,7 @@ const DateRangePicker = ({
     function populateHeaders() {
       let _dayHeaders = [];
       for (let i = 0; i <= 6; ++i) {
-        let day = _moment(displayedDate).weekday(i).format("dddd").substr(0, 2);
+        let day = _moment(displayedDate).weekday(i).format("EEEEEE");
         _dayHeaders.push(
           <Header
             key={`dayHeader-${i}`}
@@ -408,54 +419,65 @@ const DateRangePicker = ({
               {weeks}
             </View>
             {presetButtons && (
-              <View style={mergedStyles.buttonContainer}>
-                <Button
-                  buttonStyle={buttonStyle}
-                  buttonTextStyle={buttonTextStyle}
-                  onPress={today}
-                >
-                  Today
-                </Button>
-                <Button
-                  buttonStyle={buttonStyle}
-                  buttonTextStyle={buttonTextStyle}
-                  onPress={yesterday}
-                >
-                  Yesterday
-                </Button>
-                {range && (
-                  <>
-                    <Button
-                      buttonStyle={buttonStyle}
-                      buttonTextStyle={buttonTextStyle}
-                      onPress={thisWeek}
-                    >
-                      This Week
-                    </Button>
-                    <Button
-                      buttonStyle={buttonStyle}
-                      buttonTextStyle={buttonTextStyle}
-                      onPress={last7Days}
-                    >
-                      Last 7 days
-                    </Button>
-                    <Button
-                      buttonStyle={buttonStyle}
-                      buttonTextStyle={buttonTextStyle}
-                      onPress={thisMonth}
-                    >
-                      This Month
-                    </Button>
-                    <Button
-                      buttonStyle={buttonStyle}
-                      buttonTextStyle={buttonTextStyle}
-                      onPress={thisQuarter}
-                    >
-                      This Quarter
-                    </Button>
-                  </>
-                )}
-              </View>
+              <>
+                <View style={mergedStyles.buttonContainer}>
+                  <Button
+                    buttonStyle={buttonStyle}
+                    buttonTextStyle={buttonTextStyle}
+                    onPress={today}
+                  >
+                    Today
+                  </Button>
+                  <Button
+                    buttonStyle={buttonStyle}
+                    buttonTextStyle={buttonTextStyle}
+                    onPress={yesterday}
+                  >
+                    Yesterday
+                  </Button>
+                  {range && (
+                    <>
+                      <Button
+                        buttonStyle={buttonStyle}
+                        buttonTextStyle={buttonTextStyle}
+                        onPress={thisWeek}
+                      >
+                        This Week
+                      </Button>
+                      <Button
+                        buttonStyle={buttonStyle}
+                        buttonTextStyle={buttonTextStyle}
+                        onPress={last7Days}
+                      >
+                        Last 7 days
+                      </Button>
+                    </>
+                  )}
+                </View>
+                <View style={mergedStyles.buttonContainer}>
+                  <Button
+                    buttonStyle={buttonStyle}
+                    buttonTextStyle={buttonTextStyle}
+                    onPress={thisMonth}
+                  >
+                    This Month
+                  </Button>
+                  <Button
+                    buttonStyle={buttonStyle}
+                    buttonTextStyle={buttonTextStyle}
+                    onPress={thisQuarter}
+                  >
+                    This Quarter
+                  </Button>
+                  <Button
+                    buttonStyle={buttonStyle}
+                    buttonTextStyle={buttonTextStyle}
+                    onPress={thisYear}
+                  >
+                    This Year
+                  </Button>
+                </View>
+              </>
             )}
           </View>
         </View>
@@ -509,7 +531,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     borderRadius: 8,
-    width: width * 0.85,
+    width: width * 0.87,
+    paddingBottom: 8,
   },
   closeTrigger: {
     width: width,
@@ -524,7 +547,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomColor: "#efefef",
+    borderBottomColor: "#E5E5E5",
     borderBottomWidth: 0.5,
     paddingLeft: 20,
     paddingRight: 20,
@@ -532,7 +555,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   calendar: {
-    paddingTop: 20,
+    paddingTop: 16,
     paddingBottom: 20,
     width: "100%",
     padding: 10,
@@ -551,7 +574,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
-    paddingBottom: 10,
+    paddingBottom: 4,
   },
   week: {
     flexDirection: "row",
@@ -559,6 +582,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   buttonContainer: {
-    marginTop: 8,
+    marginBottom: 8,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

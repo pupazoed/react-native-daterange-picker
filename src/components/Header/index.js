@@ -22,8 +22,8 @@ export default Header;
 
 const styles = StyleSheet.create({
   dayHeader: {
-    width: width * 0.09,
-    height: height * 0.03,
+    width: width * 0.085,
+    height: height * 0.025,
     justifyContent: "center",
   },
   dayHeaderText: {

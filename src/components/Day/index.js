@@ -74,7 +74,7 @@ export default Day;
 const styles = StyleSheet.create({
   day: {
     width: width * 0.09,
-    height: height * 0.065,
+    height: height * 0.055,
     justifyContent: "center",
   },
   dayText: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   selected: {
-    backgroundColor: "#3b83f7",
+    backgroundColor: "#0A6FE8",
     height: "80%",
     borderRadius: 8,
     alignItems: "center",
