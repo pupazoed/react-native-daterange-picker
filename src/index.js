@@ -188,7 +188,7 @@ const DateRangePicker = ({
     setSelecting(false);
     onChange({
       date: null,
-      startDate: _moment(),
+      startDate: _moment().startOf("last7Days"),
       endDate: _moment().endOf("last7Days"),
       displayedDate: _moment(),
       label: "lastWeek",
